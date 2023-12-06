@@ -75,7 +75,7 @@ public class CustomArrayQueue {
     public void enqueue(Item item) -------------- amortized O(1) // worst case O(N)
 
     // remove and return a random item
-    public Item dequeue() -------------- amortized O(1) // worst case O(N)
+    public Item dequeue() -------------- amortized O(1)
 
     // return a random item (but do not remove it)
     public Item sample() -------------- O(1)
