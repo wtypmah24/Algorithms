@@ -128,9 +128,6 @@ public class SearchTree {
         while (current != null || !stack.isEmpty()) {
             if (current != null) {
                 stack.push(current);
-                if (current.value.equals(value)) {
-                    return current.key;
-                }
                 current = current.left;
             } else {
                 current = stack.pop();
