@@ -14,7 +14,7 @@ public class SearchTree {
         Integer value;
         Integer height;
 
-//        List<Node> children;
+        //        List<Node> children;
         Node left;
         Node right;
 
@@ -32,7 +32,7 @@ public class SearchTree {
 
         while (current != null) {
             int result = key.compareTo(current.key);
-            if (result == 0) return  current.value;
+            if (result == 0) return current.value;
             else if (result < 0) current = current.left;
             else current = current.right;
         }
@@ -40,7 +40,7 @@ public class SearchTree {
     }
 
     public void add(String key, Integer value) {
-            root = add(root, key, value);
+        root = add(root, key, value);
     }
 
     private Node add(Node current, String key, Integer value) { // O(log n) if tree is balanced, O(n) if tree is not balanced
@@ -57,7 +57,7 @@ public class SearchTree {
         return current;
     }
 
-    public Iterable<String> getAllKeys(){ // O(n)
+    public Iterable<String> getAllKeys() { // O(n)
         Queue<String> queue = new LinkedList<>();
         inorder(queue, root);
         return queue;
@@ -85,7 +85,7 @@ public class SearchTree {
         return sortedData;
     }
 
-    public String getMaxKey(){ // O(log n) if tree is balanced, O(n) if tree is not balanced
+    public String getMaxKey() { // O(log n) if tree is balanced, O(n) if tree is not balanced
         Node current = root;
         while (current != null) {
             if (current.right == null) return current.key;
@@ -156,16 +156,35 @@ public class SearchTree {
 
         return 1 + Math.max(leftHeight, rightHeight);
     }
+
     public int treeHeight2() { // O(1)
         return (root == null) ? 0 : root.height;
+    }
+
+    //Lazy method
+    public boolean isBalanced() {
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node current) {
+        if (current == null) {
+            return true;
+        }
+
+        int leftHeight = treeHeight(current.left);
+        int rightHeight = treeHeight(current.right);
+
+        // Check if the left and right subtrees are balanced and
+        // their height difference is at most 1
+        return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(current.left) && isBalanced(current.right);
     }
 
 
     public static void main(String[] args) {
         SearchTree tree = new SearchTree();
-        tree.add("C", 10);
         tree.add("A", 20);
         tree.add("B", 30);
+        tree.add("C", 10);
         tree.add("D", 40);
         tree.add("G", 90);
 
@@ -190,6 +209,8 @@ public class SearchTree {
         System.out.println("searchByValueDFS, iterativeInorder: " + tree.searchByValueDFS(20));
         System.out.println("treeHeight: " + tree.treeHeight());
         System.out.println("treeHeight2: " + tree.treeHeight2());
+
+        System.out.println(tree.isBalanced());
     }
 
 }
