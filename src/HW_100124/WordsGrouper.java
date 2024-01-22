@@ -10,7 +10,7 @@ public class WordsGrouper {
     public static void groupWords(String[] words) {
         HashMap<String, List<String>> groups = new HashMap<>();
         for (String word : words) {
-            Set<Character> uniqueChars = new HashSet<>();
+            Set<Character> uniqueChars = new TreeSet<>();
             for (char c : word.toCharArray()) {
                 uniqueChars.add(c);
             }
