@@ -1,4 +1,4 @@
-package HW_31012024;
+package HW_24012024;
 
 import java.util.Arrays;
 
